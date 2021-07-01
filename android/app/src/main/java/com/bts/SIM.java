@@ -50,13 +50,13 @@ public class SIM extends ReactContextBaseJavaModule {
    @ReactMethod
    public void getTAC(Callback successCallback){
        List<CellInfo> list = telephonyManager.getAllCellInfo();
-       CellInfo cell;
-       for (String s : list) {
+       CellInfo cell = null;
+       for (CellInfo s : list) {
            if (s.isRegistered()){
                cell = s;
            }
        }
-       if (cell instanceof CellInfoLte){
+       if (cell != null && cell instanceof CellInfoLte){
             CellIdentityLte cellIdentity = ((CellInfoLte) cell).getCellIdentity();
             successCallback.invoke(cellIdentity.getTac());
        }
@@ -66,13 +66,13 @@ public class SIM extends ReactContextBaseJavaModule {
    @ReactMethod
    public void getEARFCN(Callback successCallback){
        List<CellInfo> list = telephonyManager.getAllCellInfo();
-       CellInfo cell;
-       for (String s : list) {
+       CellInfo cell = null;
+       for (CellInfo s : list) {
            if (s.isRegistered()){
                cell = s;
            }
        }
-       if (cell instanceof CellInfoLte && android.os.Build.VERSION.SDK_INT >= 24){
+       if (cell != null && cell instanceof CellInfoLte && android.os.Build.VERSION.SDK_INT >= 24){
             CellIdentityLte cellIdentity = ((CellInfoLte) cell).getCellIdentity();
             successCallback.invoke(cellIdentity.getEarfcn());
        }

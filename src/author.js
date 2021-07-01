@@ -6,7 +6,9 @@ import {
   Text,
   Modal,
   Pressable,
+  TouchableOpacity,
 } from 'react-native';
+import {removeAllData} from './db';
 
 const Author = props => {
   return (
@@ -26,7 +28,6 @@ const Author = props => {
         <View
           style={{
             width: 300,
-            height: 300,
             backgroundColor: 'white',
             borderRadius: 5,
             overflow: 'hidden',
@@ -50,7 +51,7 @@ const Author = props => {
           </ImageBackground>
           <View
             style={{
-              height: 150,
+              height: 120,
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
@@ -59,6 +60,20 @@ const Author = props => {
             <Text style={styles.name}>&</Text>
             <Text style={styles.name}>Sepehr Hashemi</Text>
           </View>
+          <TouchableOpacity
+            onPress={e => {
+              removeAllData();
+              props.onClose();
+            }}
+            style={{
+              width: '100%',
+              height: 42,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'rgba(255,0,0,0.3)',
+            }}>
+            <Text style={{color: 'red'}}>Drop Data</Text>
+          </TouchableOpacity>
         </View>
       </Pressable>
     </Modal>
@@ -77,6 +92,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     fontWeight: 'bold',
-    marginVertical: 6,
+    marginVertical: 4,
   },
 });

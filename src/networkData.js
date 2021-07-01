@@ -10,11 +10,8 @@ export function getLAC(callBack) {
 export function getPLMN(callBack) {
   SIM.getPLMN(callBack);
 }
-export function getNetworkType(callBack) {
+export function getNETWORK(callBack) {
   SIM.getNetworkType(callBack);
-}
-export function getLength(callBack) {
-  SIM.getLength(callBack);
 }
 export function getTAC(callBack) {
   SIM.getTAC(callBack);
